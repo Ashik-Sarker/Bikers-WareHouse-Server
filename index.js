@@ -51,7 +51,7 @@ async function run() {
 
         })
 
-        //My items
+        //My items 
         app.get('/myItem', verifyJWT, async (req, res) => {
             const decodedEmail = req.decoded.email;
             const email = req.query.email;
