@@ -26,6 +26,24 @@ async function run() {
             const items = await cursor.toArray();
             res.send(items)
         })
+
+        //My items
+        app.get('/myItem', async (req, res) => {
+            const email = req.query.email;
+            const query = { email: email };
+            const cursor = itemCollection.find(query);
+            const items = await cursor.toArray();
+            res.send(items);
+        })
+
+        //Most Popular Items
+        app.get('/mostPopularItem', async (req, res) => {
+            const query = {};
+            const cursor = itemCollection.find(query);
+            const items = await cursor.limit(6).toArray();
+            res.send(items)
+        })
+        
         //specific user
         app.get('/item/:id', async(req, res) => {
             const id = req.params.id;
